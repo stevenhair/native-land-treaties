@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Millard Filmore",
+    "start": "1850-07-06",
+    "end": "1853-03-04"
+  },
+  {
+    "name": "Franklin Pierce",
+    "start": "1853-03-04",
+    "end": "1857-03-04"
+  },
+  {
+    "name": "James Buchanan",
+    "start": "1857-03-04",
+    "end": "1861-03-04"
+  },
+  {
+    "name": "Abraham Lincoln",
+    "start": "1861-03-04",
+    "end": "1865-04-15"
+  }
+]
