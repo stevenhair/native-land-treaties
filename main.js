@@ -3,10 +3,6 @@ import { addLayerToMap, createMap, removeLayerFromMap } from './modules/map.js';
 
 createMap('main-map');
 
-document.getElementById('export-button').addEventListener('click', () => {
-    alert('not implemented');
-});
-
 function createViewControls(entity, layer) {
     const id = `entity-input-${entity.name.toLowerCase().replaceAll(' ', '-')}`;
 
@@ -31,7 +27,7 @@ function createViewControls(entity, layer) {
         div.append(dates);
     }
 
-    document.getElementById('export-button').before(div);
+    document.getElementById('header').append(div);
 }
 
 function addToggleListener(checkbox, layer) {

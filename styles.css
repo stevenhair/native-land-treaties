@@ -14,21 +14,6 @@ body {
     align-items: center;
 }
 
-#header button {
-    margin-left: auto;
-    margin-right: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 1em;
-
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 1ex 1ex;
-    text-align: center;
-    text-decoration: none;
-}
-
 .entity-selector {
     margin: 0 1em;
 }
