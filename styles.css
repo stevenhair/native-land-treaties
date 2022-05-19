@@ -4,6 +4,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: 'Merriweather', serif;
+    white-space: nowrap;
 }
 
 #header {
@@ -12,6 +13,7 @@ body {
     margin: 0 1em;
     display: flex;
     align-items: center;
+    overflow: scroll;
 }
 
 .entity-selector {
