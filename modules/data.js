@@ -3,8 +3,8 @@ async function loadJson(filename) {
 }
 
 export async function getTreatyGeoData() {
-    // this data originally from https://native-land.ca/wp-content/themes/Native-Land-Theme/files/indigenousTreaties.json
-    return (await (await loadJson('native-land-treaties.json'))).features;
+    // this data originally from https://native-land.ca/wp-json/nativeland/v1/api/index.php?maps=treaties
+    return (await (await loadJson('native-land-treaties.json')));
 }
 
 async function loadPresidentData() {
