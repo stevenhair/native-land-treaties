@@ -1,4 +1,4 @@
-import { getColoradoTreaties, getGroupedPresidentTreaties, getTreatyGeoData } from './modules/data.js';
+import { getColoradoTreaties, getGroupedPresidentTreaties, getMiningCessions, getTreatyGeoData } from './modules/data.js';
 import { addLayerToMap, createMap, removeLayerFromMap } from './modules/map.js';
 
 createMap('main-map');
@@ -11,7 +11,7 @@ function createViewControls(entity, layer) {
     div.classList.add('entity-selector');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox'
-    checkbox.checked = true;
+    checkbox.checked = false;
     addToggleListener(checkbox, layer);
 
     const label = document.createElement('label');
@@ -42,8 +42,6 @@ function addToggleListener(checkbox, layer) {
 
 function addEntity(entity, cessions, color) {
     const layer = L.geoJSON(cessions, { style: () => ({ color, weight: 1, fillColor: color, fillOpacity: 0.4 }) });
-    addLayerToMap(layer);
-
     createViewControls(entity, layer);
 }
 
@@ -55,3 +53,6 @@ groupedByPresident.forEach((d, i) => addEntity(d.president, d.cessions, colors[i
 
 const coloradoTreaties = await getColoradoTreaties(geoData);
 addEntity({ name: 'Colorado' }, coloradoTreaties, '#60099b');
+
+const miningCessions = await getMiningCessions(geoData);
+addEntity({ name: 'Mining Cessions' }, miningCessions, '#9b0926');

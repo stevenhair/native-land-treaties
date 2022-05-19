@@ -51,7 +51,7 @@ export async function getColoradoTreaties(geoData) {
     const coloradoCessions = await loadColoradoCessions();
 
     return coloradoCessions.map(({ name }) => {
-        const treaty = findTreatyByName(geoData, name)
+        const treaty = findTreatyByName(geoData, name);
 
         if (!treaty) {
             console.warn(`No treaty named ${cession.name}`);
@@ -59,4 +59,34 @@ export async function getColoradoTreaties(geoData) {
 
         return treaty;
     }).filter((t) => !!t);
+}
+
+export async function getMiningCessions(geoData) {
+    const june = new Date('1863-06-01').valueOf();
+    const nov = new Date('1863-11-01').valueOf();
+
+    const cessions = (await loadPresidentCessionData()).filter((item) => {
+        const date = new Date(item.date).valueOf();
+        return date >= june && date < nov;
+    });
+
+    const filteredGeoData = cessions
+        .map((cession) => {
+            const treaty = findTreatyByName(geoData, cession.name);
+
+            if (!treaty) {
+                console.warn(`No treaty named ${cession.name}`);
+            }
+
+            return treaty;
+        })
+        .filter((t) => !!t);
+
+    filteredGeoData.push(findTreatyByName(geoData, 'Fort Bridger Treaty'));
+    filteredGeoData.push(findTreatyByName(geoData, 'Cession 515'));
+    filteredGeoData.push(findTreatyByName(geoData, 'Cession 566'));
+    filteredGeoData.push(findTreatyByName(geoData, 'Cession 616'));
+    filteredGeoData.push(findTreatyByName(geoData, 'Cession 617'));
+
+    return filteredGeoData;
 }
