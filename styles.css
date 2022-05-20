@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    white-space: nowrap;
+}
+
+#header {
+    height: 5rem;
+    font-size: 2.5ex;
+    margin: 0 1em;
+    display: flex;
+    align-items: center;
+    overflow: scroll;
+}
+
+.entity-selector {
+    margin: 0 1em;
+}
+
+.entity-selector input[type=checkbox] {
+    margin-right: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.president-dates {
+    margin-left: 0.3em;
+    font-size: 0.6em
+}
+
+#main-map {
+    height: calc(100vh - 5rem);
+    width: 100vw;
+}
