@@ -76,6 +76,8 @@ export async function getMiningCessions(geoData) {
 
             if (!treaty) {
                 console.warn(`No treaty named ${cession.name}`);
+            } else {
+                treaty.properties.color = `#${Math.round(Math.random() * 0xFFFFFF).toString(16)}`;
             }
 
             return treaty;
@@ -83,10 +85,11 @@ export async function getMiningCessions(geoData) {
         .filter((t) => !!t);
 
     filteredGeoData.push(findTreatyByName(geoData, 'Fort Bridger Treaty'));
-    filteredGeoData.push(findTreatyByName(geoData, 'Cession 515'));
-    filteredGeoData.push(findTreatyByName(geoData, 'Cession 566'));
-    filteredGeoData.push(findTreatyByName(geoData, 'Cession 616'));
-    filteredGeoData.push(findTreatyByName(geoData, 'Cession 617'));
+    ['Cession 515', 'Cession 566', 'Cession 616', 'Cession 617'].forEach((cessionName) => {
+        const treaty = findTreatyByName(geoData, cessionName);
+        treaty.properties.color = `#123456`;
+        filteredGeoData.push(treaty);
+    });
 
     return filteredGeoData;
 }

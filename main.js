@@ -15,12 +15,13 @@ function createViewControls(entity, layer) {
 
     div.classList.add('entity-selector');
     const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox'
+    checkbox.type = 'checkbox';
+    checkbox.id = id;
     checkbox.checked = false;
     addToggleListener(checkbox, layer);
 
     const label = document.createElement('label');
-    label.attributes.for = id;
+    label.htmlFor = id;
     label.innerText = entity.name;
 
     div.append(checkbox, label);
@@ -46,18 +47,19 @@ function addToggleListener(checkbox, layer) {
 }
 
 function addEntity(entity, cessions, c) {
-    const layer = L.geoJSON(cessions, { style: (feature) => {
-            const color = c ?? `#${Math.round(Math.random() * 0xFFFFFF).toString(16)}`;
-            console.log(color);
-            return { color, weight: 1, fillColor: color, fillOpacity: 0.4 }
-        }});
+    const layer = L.geoJSON(cessions, {
+        style: (feature) => {
+            const color = c ?? feature.properties.color;
+            return { color, weight: 1, fillColor: color, fillOpacity: 0.4 };
+        },
+    });
     createViewControls(entity, layer);
 }
 
 const geoData = await getTreatyGeoData();
 
 const groupedByPresident = await getGroupedPresidentTreaties(geoData);
-const colors = ['#e55b13', '#f6c519','#699f17', '#1b4a75'];
+const colors = ['#e55b13', '#f6c519', '#699f17', '#1b4a75'];
 groupedByPresident.forEach((d, i) => addEntity(d.president, d.cessions, colors[i]));
 
 const coloradoTreaties = await getColoradoTreaties(geoData);
